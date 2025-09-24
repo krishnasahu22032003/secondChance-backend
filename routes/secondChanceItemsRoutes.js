@@ -32,3 +32,8 @@ router.get("/api/secondchance/items", async (req, res) => {
 });
 router.get("/api/secondchance/items", async (req, res) => { ... });
 router.get("/api/secondchance/items/:id", async (req, res) => { ... });
+router.delete("/api/secondchance/items/:id", async (req, res) => {
+  const db = await connectToDatabase();
+  await db.collection("secondChanceItems").deleteOne({ _id: new ObjectId(req.params.id) });
+  res.json({ success: true });
+});
